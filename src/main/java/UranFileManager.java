@@ -103,7 +103,12 @@ public class UranFileManager {
   }
 
   public void upFolder(String folder) {
-    gotoFolder(folder.substring(0, folder.substring(0, folder.length() - 1).lastIndexOf('\\')));
+    if (new File(folder).getParent() == null) {
+      gotoRoot();
+    } else {
+      gotoFolder(new File(folder).getParent());
+    }
+//    gotoFolder(folder.substring(0, folder.substring(0, folder.length() - 1).lastIndexOf('\\')));
   }
 
   public void parsePathToButtons() {
@@ -140,7 +145,7 @@ public class UranFileManager {
   }
 
   public void gotoFolder(String directoryPath) {
-    boolean isUpButtonDisable = directoryPath.length() > 3 ? false : true;
+    boolean isUpButtonDisable = directoryPath.length() > 0 ? false : true;
     upFolderButton.setDisable(isUpButtonDisable);
 
     if ((directoryPath.lastIndexOf('\\') + 1) != directoryPath.length()) {
