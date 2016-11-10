@@ -108,7 +108,6 @@ public class UranFileManager {
     } else {
       gotoFolder(new File(folder).getParent());
     }
-//    gotoFolder(folder.substring(0, folder.substring(0, folder.length() - 1).lastIndexOf('\\')));
   }
 
   public void parsePathToButtons() {
